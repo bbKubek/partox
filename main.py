@@ -1,6 +1,7 @@
 import discord  # importowanie bibliotekii discord
 import json  # importowanie jsona
 import requests  # tworzenie requesta do strony
+import random
 
 open_json = open('config.json')  # otwieranie pliku json
 data = json.load(open_json)  # ładowanie danych pliku json
@@ -39,19 +40,11 @@ async def on_message(message):
         quote = get_quotes()
         await message.channel.send(quote)           # await message.channel.send() wysyłanie wiadomości przez bota
 
+    if any(word in msg for word in sad_words):
+        await message.channel.send(random.choice(options))
 
-    if msg.startswith("$new"):
-        encouraging_message = msg.split("$new ", 1)[1]
-        update_encouragements(encouraging_message)      # dodawanie zachęty przez użytkownika
-        await message.channel.send("New encouraging message added.")
-
-    if msg.startswith("$del"):
-        encouragements = []
-        if "encouragements" in db.keys():
-            index = int(msg.split("$del", 1)[1])
-            delete_encouragment(index)
-            encouragements = db["encouragements"]
-        await message.channel.send(encouragements)
+    if msg.startswith('$botinfo'):
+        await message.channel.send()
 
 
 bot.run(data['TOKEN'])
