@@ -1,7 +1,6 @@
 import discord  # importowanie bibliotekii discord
 import json  # importowanie jsona
 import requests  # tworzenie requesta do strony
-import random
 
 open_json = open('config.json')  # otwieranie pliku json
 data = json.load(open_json)  # ładowanie danych pliku json
