@@ -2,6 +2,7 @@ import discord  # importowanie bibliotekii discord
 import json  # importowanie jsona
 import requests  # tworzenie requesta do strony
 import random
+import asyncio
 
 open_json = open('config.json')  # otwieranie pliku json
 data = json.load(open_json)  # ładowanie danych pliku json
@@ -10,7 +11,7 @@ bot = discord.Client()  # interpretuje bota jako użytkownika
 
 sad_words = ["sad", "depressed", "unhappy", "angry", "depressing"]
 
-krzysiu = ["fede", "krzychu", "krzyś"]
+krzysiu = ["fede", "krzychu", "krzyś", "krzysiu", "krzys", ]
 
 starter_encouragements = [
     "Cheer up!",
@@ -26,9 +27,18 @@ def get_quotes():  # funkcja losująca cytaty z api
     return (quote)
 
 
+async def status_task():
+    while True:
+        await bot.change_presence(...)
+        await asyncio.sleep(10)
+        await bot.change_presence(...)
+        await asyncio.sleep(10)
+
+
 @bot.event          # Wiadomość o wystartowaniu bota
 async def on_ready():
     print("{0.user} has Started.".format(bot))
+    await bot.change_presence(activity=discord.Game('$help'))
 
 
 @bot.event
