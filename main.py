@@ -1,8 +1,11 @@
 import discord  # importowanie bibliotekii discord
+from discord.ext import commands
 import json  # importowanie jsona
 import requests  # tworzenie requesta do strony
 import random
-import asyncio
+
+
+prefix = commands.Bot(command_prefix="$")
 
 open_json = open('config.json')  # otwieranie pliku json
 data = json.load(open_json)  # ładowanie danych pliku json
@@ -27,18 +30,10 @@ def get_quotes():  # funkcja losująca cytaty z api
     return (quote)
 
 
-async def status_task():
-    while True:
-        await bot.change_presence(...)
-        await asyncio.sleep(10)
-        await bot.change_presence(...)
-        await asyncio.sleep(10)
-
-
 @bot.event          # Wiadomość o wystartowaniu bota
 async def on_ready():
     print("{0.user} has Started.".format(bot))
-    await bot.change_presence(activity=discord.Game('$help'))
+    await bot.change_presence(activity=discord.Game('help'))
 
 
 @bot.event
@@ -48,7 +43,7 @@ async def on_message(message):
 
     msg = message.content
 
-    if msg.startswith('$inspire'):
+    if msg.startswith('inspire'):
         quote = get_quotes()
         await message.channel.send(quote)           # await message.channel.send() wysyłanie wiadomości przez bota
 
