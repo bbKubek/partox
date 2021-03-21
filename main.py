@@ -46,7 +46,7 @@ async def on_message(message):
         await message.channel.send(random.choice(starter_encouragements))
 
     if any(word in msg for word in krzysiu):
-        await message.channel.send(random.choice("to pedał"))
+        await message.channel.send("to pedał")
 
 
 bot.run(data['TOKEN'])
