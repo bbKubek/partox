@@ -41,10 +41,8 @@ async def on_message(message):
         await message.channel.send(quote)           # await message.channel.send() wysyłanie wiadomości przez bota
 
     if any(word in msg for word in sad_words):
-        await message.channel.send(random.choice(options))
+        await message.channel.send(random.choice(starter_encouragements))
 
-    if msg.startswith('$botinfo'):
-        await message.channel.send()
 
 
 bot.run(data['TOKEN'])
