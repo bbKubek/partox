@@ -53,8 +53,6 @@ def get_quotes():  # funkcja losująca cytaty z api
 
 @bot.command(name='serverinfo')
 async def fetchServerInfo(ctx, args):
-    if(args[1] == "help"):
-        await ctx.send("info")
 
     name = str(ctx.guild.name)
     region = str(ctx.guild.region)
