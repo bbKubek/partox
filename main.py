@@ -19,6 +19,7 @@ bot = Bot(command_prefix='$')  # prefix
 open_json = open('config.json')  # otwieranie pliku json
 data = json.load(open_json)  # ładowanie danych pliku json
 
+bot.remove_command("help")
 # ładowanie komend z zewnętrznych plików
 @bot.command()
 async def load(ctx, extension):
